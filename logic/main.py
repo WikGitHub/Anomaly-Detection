@@ -45,6 +45,8 @@ autoencoder.fit(x_train_preprocessed, x_train_preprocessed, epochs=10, batch_siz
 encoded_data = autoencoder.encoder(x_train_preprocessed)
 decoded_data = autoencoder.decoder(encoded_data)
 
+# ------------------------------ visualisations ------------------------------
+
 # Convert EagerTensor to NumPy array and reshape
 decoded_images = decoded_data.numpy().reshape((-1, 28, 28))
 
