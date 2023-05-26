@@ -1,13 +1,7 @@
-# Anomaly Detection Autoencoder - electrocardiogram dataset 
+## Anomaly Detection Autoencoder - electrocardiogram dataset 
 
 Using errors to detect anomalies in time series data.
-
-Training a model to come up with a representation of 784 bytes into 32 bytes that when it reconstructs from those 32 bytes, it will reconstruct with a relatively low loss
-
-Goal: we want the autoencoder to fail
-
-TODO:
-Different layers 
+The model is trained on normal ECGs and then tested on anomalous ECGs. The idea is that the autoencoder will learn to encode normal ECGs and then when it is presented with an anomalous ECG it will not be able to encode it as well and the error will be higher. This way we can detect anomalies in the data.
 
 
-Learns to encode good ECGs so knows what is anomalous
+

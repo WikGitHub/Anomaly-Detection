@@ -2,22 +2,63 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from logic.main import decoded_data, x_train
+from logic.anomaly_detector import AnomalyDetector
 
-decoded_images = decoded_data.numpy().reshape((-1, 28, 28))
+#
+# autoencoder = AnomalyDetector()
+# autoencoder.compile(optimizer="adam", loss="mae")
+# autoencoder.fit(normal_train_data, normal_train_data, epochs=20, validation_data=(test_data, test_data), shuffle=True)
 
-num_images = 5
-random_indices = np.random.choice(len(x_train), num_images, replace=False)
 
-fig, axes = plt.subplots(nrows=2, ncols=num_images, figsize=(10, 4))
-for i, idx in enumerate(random_indices):
-    axes[0, i].imshow(x_train[idx], cmap="gray")
-    axes[0, i].axis("off")
-    axes[0, i].set_title("Original")
+# plt.plot(autoencoder.history.history["loss"], label="Training Loss")
+# plt.plot(autoencoder.history.history["val_loss"], label="Validation Loss")
+# plt.legend()
+# plt.show()
 
-    axes[1, i].imshow(decoded_images[idx], cmap="gray")
-    axes[1, i].axis("off")
-    axes[1, i].set_title("Reconstructed")
+#
+# encoded_imgs = autoencoder.encoder(normal_test_data).numpy()
+# decoded_imgs = autoencoder.decoder(encoded_imgs).numpy()
+#
+# plt.plot(normal_test_data[0], label="Original")
+# plt.plot(decoded_imgs[0], label="Reconstructed")
+# plt.fill_between(np.arange(140), decoded_imgs[0], normal_test_data[0], color="lightcoral")
+# plt.legend(labels=["Original", "Reconstructed", "Error"])
+# plt.show()
 
-plt.tight_layout()
-plt.show()
+
+# plot for anomalous data
+# encoded_imgs = autoencoder.encoder(test_data).numpy()
+# decoded_imgs = autoencoder.decoder(encoded_imgs).numpy()
+#
+# plt.plot(test_data[0], label="Original")
+# plt.plot(decoded_imgs[0], label="Reconstructed")
+# plt.fill_between(np.arange(140), decoded_imgs[0], test_data[0], color="lightcoral")
+# plt.legend(labels=["Original", "Reconstructed", "Error"])
+# plt.show()
+
+
+# show loss on histogram
+
+# reconstructions = autoencoder.predict(normal_test_data)
+# train_loss = tf.keras.losses.mae(reconstructions, normal_test_data)
+#
+# plt.hist(train_loss[None, :], bins=50)
+# plt.xlabel("Train loss")
+# plt.ylabel("No of examples")
+# plt.show()
+
+# threshold = np.mean(train_loss) + np.std(train_loss)
+# print("Threshold: ", threshold)
+
+#show loss of anomalous data on histogram
+# reconstructions = autoencoder.predict(anomalous_test_data)
+# train_loss = tf.keras.losses.mae(reconstructions, anomalous_test_data)
+#
+# plt.hist(train_loss[None, :], bins=50)
+# plt.xlabel("Train loss")
+# plt.ylabel("No of examples")
+# plt.show()
+
+
+
+# calculate accuracy and ect
