@@ -8,3 +8,6 @@ Goal: we want the autoencoder to fail
 
 TODO:
 Different layers 
+
+
+Learns to encode good ECGs so knows what is anomalous
