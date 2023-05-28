@@ -3,7 +3,13 @@ import os
 import sys
 
 
-def get_logger(name: str = None, propergate: bool = False) -> logging.Logger:
+def get_logger(name: str = None, propagate: bool = False) -> logging.Logger:
+    """
+    Get a logger with the given name and loglevel
+    :param name: the name of the logger
+    :param propagate: whether to propagate the logs to the root logger
+    :return: the logger
+    """
 
     logger = logging.getLogger(name=name)
     logger.handlers.clear()
@@ -27,6 +33,6 @@ def get_logger(name: str = None, propergate: bool = False) -> logging.Logger:
 
     loglevel = getattr(logging, loglevel.upper())
     logger.setLevel(level=loglevel)
-    logger.propagate = propergate
+    logger.propagate = propagate
 
     return logger
