@@ -8,6 +8,7 @@ from logic.data_preprocessing import preprocess_data
 
 _logger = get_logger(__name__)
 
+
 class AnomalyDetector(tf.keras.Model):
     """
     Anomaly detector model
@@ -27,7 +28,7 @@ class AnomalyDetector(tf.keras.Model):
             [
                 layers.Dense(16, activation="relu"),
                 layers.Dense(32, activation="relu"),
-                layers.Dense(140, activation="sigmoid")
+                layers.Dense(140, activation="sigmoid"),
             ]
         )
 
@@ -42,7 +43,12 @@ class AnomalyDetector(tf.keras.Model):
         return decoded
 
 
-def train_autoencoder(autoencoder: AnomalyDetector, train_data: tf.Tensor, epochs: int = 20, validation_data: tf.Tensor = None) -> None:
+def train_autoencoder(
+    autoencoder: AnomalyDetector,
+    train_data: tf.Tensor,
+    epochs: int = 20,
+    validation_data: tf.Tensor = None,
+) -> None:
     """
     Train the autoencoder model on the train data
     :param autoencoder: the autoencoder model
@@ -51,7 +57,13 @@ def train_autoencoder(autoencoder: AnomalyDetector, train_data: tf.Tensor, epoch
     :param validation_data: the validation data
     """
     autoencoder.compile(optimizer="adam", loss="mae")
-    autoencoder.fit(train_data, train_data, epochs=epochs, validation_data=validation_data, shuffle=True)
+    autoencoder.fit(
+        train_data,
+        train_data,
+        epochs=epochs,
+        validation_data=validation_data,
+        shuffle=True,
+    )
 
 
 def evaluate_autoencoder(autoencoder: AnomalyDetector, test_data: tf.Tensor) -> None:
@@ -64,7 +76,12 @@ def evaluate_autoencoder(autoencoder: AnomalyDetector, test_data: tf.Tensor) -> 
     _logger.info("The loss is: {}".format(loss))
 
 
-def productionise_autoencoder(autoencoder: AnomalyDetector, train_data: tf.Tensor, test_data: tf.Tensor, epochs: int = 20) -> None:
+def productionise_autoencoder(
+    autoencoder: AnomalyDetector,
+    train_data: tf.Tensor,
+    test_data: tf.Tensor,
+    epochs: int = 20,
+) -> None:
     """
     Productionise the autoencoder model
     :param autoencoder: the autoencoder model
@@ -77,7 +94,12 @@ def productionise_autoencoder(autoencoder: AnomalyDetector, train_data: tf.Tenso
 
 
 # Preprocess the data
-normal_train_data, anomalous_train_data, normal_test_data, anomalous_test_data = preprocess_data("../data/ecg_data.csv")
+(
+    normal_train_data,
+    anomalous_train_data,
+    normal_test_data,
+    anomalous_test_data,
+) = preprocess_data("../data/ecg_data.csv")
 
 # Create an instance of the AnomalyDetector model
 autoencoder = AnomalyDetector()

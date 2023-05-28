@@ -16,18 +16,3 @@ from logic.data_preprocessing import test_data, normal_test_data
 
 
 # calculate accuracy of model
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

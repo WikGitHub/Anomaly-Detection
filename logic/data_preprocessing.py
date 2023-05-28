@@ -28,7 +28,9 @@ def normalise_data(data: tf.Tensor) -> tf.Tensor:
     return normalised_data
 
 
-def separate_data_by_labels(data: tf.Tensor, labels: tf.Tensor) -> Tuple[tf.Tensor, tf.Tensor]:
+def separate_data_by_labels(
+    data: tf.Tensor, labels: tf.Tensor
+) -> Tuple[tf.Tensor, tf.Tensor]:
     """
     Separate data by labels into normal and anomalous data
     :param data: data to separate
@@ -40,8 +42,9 @@ def separate_data_by_labels(data: tf.Tensor, labels: tf.Tensor) -> Tuple[tf.Tens
     return normal_data, anomalous_data
 
 
-def preprocess_data(file_path: str, test_size: float = 0.2, random_state: int = 21) -> Tuple[
-    tf.Tensor, tf.Tensor, tf.Tensor, tf.Tensor]:
+def preprocess_data(
+    file_path: str, test_size: float = 0.2, random_state: int = 21
+) -> Tuple[tf.Tensor, tf.Tensor, tf.Tensor, tf.Tensor]:
     """
     Preprocess data by loading, splitting, normalising and separating by labels
     :param file_path: the path to the csv file
@@ -69,4 +72,9 @@ def preprocess_data(file_path: str, test_size: float = 0.2, random_state: int = 
         normalised_test_data, test_labels
     )
 
-    return normal_train_data, anomalous_train_data, normal_test_data, anomalous_test_data
+    return (
+        normal_train_data,
+        anomalous_train_data,
+        normal_test_data,
+        anomalous_test_data,
+    )
