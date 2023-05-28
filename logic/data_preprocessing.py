@@ -1,7 +1,8 @@
+from typing import Tuple
+
 import pandas as pd
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
-from typing import Tuple, Union
 
 
 def load_data(file_path: str) -> Tuple[tf.Tensor, tf.Tensor]:

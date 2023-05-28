@@ -1,7 +1,5 @@
 import tensorflow as tf
-import numpy as np
-from matplotlib import pyplot as plt
-from tensorflow.keras import layers, Model
+from tensorflow.keras import layers
 
 from _logging.main import get_logger
 from logic.data_preprocessing import preprocess_data

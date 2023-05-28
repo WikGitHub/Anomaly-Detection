@@ -1,5 +1,7 @@
 ## Anomaly Detection Autoencoder - Electrocardiogram Dataset 
 
+# STILL IN PROGRESS
+
 The Anomaly Detector Autoencoder is a machine learning model used to detect anomalies in ECG data. It utilises an autoencoder architecture consisting of an encoder and a decoder.
 
 ## Requirements
