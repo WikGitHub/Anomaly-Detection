@@ -1,4 +1,3 @@
-# Convert EagerTensor to NumPy array and reshape
 import numpy as np
 import tensorflow as tf
 from matplotlib import pyplot as plt
