@@ -47,4 +47,7 @@ Feel free to modify the content as per your requirements and add any additional 
 ## On the to-do list:
 - [ ] incorporate some MLOPS 
 - [ ] research and implement a better model architecture
+- [ ] add more documentation eg diagrams
+- [ ] better visualisations of results
+- [ ] add tests
 
