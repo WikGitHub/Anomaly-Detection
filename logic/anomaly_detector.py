@@ -12,7 +12,7 @@ def train_autoencoder(
     autoencoder: AnomalyDetector,
     train_data: tf.Tensor,
     normal_test_data: tf.Tensor,
-    epochs: int = 50,
+    epochs: int,
 ) -> tf.keras.callbacks.History:
     """
     Train the autoencoder model on the train data
@@ -22,7 +22,7 @@ def train_autoencoder(
     :param epochs: the number of epochs to train for
     :return: the history of the training
     """
-    autoencoder.compile(optimizer="adam", loss="logcosh")
+    autoencoder.compile(optimizer="adam", loss="mse")
     history = autoencoder.fit(
         train_data,
         train_data,
@@ -36,7 +36,7 @@ def train_autoencoder(
 
 def main(
     autoencoder: AnomalyDetector,
-    epochs: int = 20,
+    epochs: int,
 ) -> None:
     """
     Train and evaluate the autoencoder model
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     autoencoder = AnomalyDetector()
 
     # Train and evaluate the model
-    main(autoencoder, epochs=20)
+    main(autoencoder, epochs=50)
