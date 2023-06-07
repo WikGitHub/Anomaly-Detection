@@ -22,7 +22,7 @@ To use the Anomaly Detector Autoencoder, you need the following dependencies:
 
 ## How to run:
 1. Clone the repository
-2. Install the dependencies
+2. Install the requirements
 3. Run the 'logic/anomaly_detector.py' file
 
 
