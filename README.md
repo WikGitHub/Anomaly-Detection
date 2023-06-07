@@ -3,7 +3,6 @@
 The Anomaly Detector Autoencoder is a machine learning model used to detect anomalies in ECG data.
 
 ## Background on Autoencoders
-
 An autoencoder is essentially a neural network trained to copy its input to its output. Internally, this model has a hidden layer which describes code used to represent an input. However, this copying is restricted to copy approximately, forcing the model to learn a compressed representation of the input. This allows for the model to prioritise which aspects of the input data are most important.
 The architecture of an autoencoder comprises of two components: an encoder and a decoder.
 - The encoder aspect is responsible for compressing the input data into a latent-space representation.
@@ -13,7 +12,6 @@ The architecture of an autoencoder comprises of two components: an encoder and a
 The dataset used in this project is the [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/) from PhysioNet.
 
 
-
 ## Requirements
 To use the Anomaly Detector Autoencoder, you need the following dependencies:
 
@@ -21,6 +19,11 @@ To use the Anomaly Detector Autoencoder, you need the following dependencies:
 - NumPy (version 1.24.3)
 - Matplotlib (version 3.7.1)
 - Scikit-learn (version 1.2.2)
+
+## How to run:
+1. Clone the repository
+2. Install the dependencies
+3. Run the 'logic/anomaly_detector.py' file
 
 
 ## Conclusion
