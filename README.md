@@ -7,10 +7,10 @@ The Anomaly Detector Autoencoder is a machine learning model used to detect anom
 ## Requirements
 To use the Anomaly Detector Autoencoder, you need the following dependencies:
 
-TensorFlow (version 2.13.0rc0)
-NumPy (version 1.24.3)
-Matplotlib (version 3.7.1)
-Scikit-learn (version 1.2.2)
+- TensorFlow (version 2.13.0rc0)
+- NumPy (version 1.24.3)
+- Matplotlib (version 3.7.1)
+- Scikit-learn (version 1.2.2)
 
 
 ## Conclusion
