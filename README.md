@@ -31,6 +31,7 @@ Feel free to modify the content as per your requirements and add any additional 
 
 ## On the to-do list:
 - [ ] incorporate some MLOPS 
+- [ ] use environment variables to decrease hardcoding
 - [ ] add more documentation eg diagrams
 - [ ] test on other datasets
 - [ ] add tests
