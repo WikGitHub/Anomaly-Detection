@@ -47,7 +47,7 @@ def main(
         epochs: int = 20,
 ) -> None:
     """
-    Productionise the autoencoder model
+    Train and evaluate the autoencoder model
     :param autoencoder: the autoencoder model
     :param train_data: the train data
     :param test_data: the test data
@@ -67,4 +67,4 @@ def main(
 autoencoder = AnomalyDetector()
 
 # Train and evaluate the autoencoder
-main(autoencoder, normal_train_data, normal_test_data, epochs=20)
+main(autoencoder, normal_train_data, normal_test_data, epochs=50)
