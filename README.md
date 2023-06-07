@@ -1,18 +1,17 @@
 ## Anomaly Detection Autoencoder - Electrocardiogram Dataset 
 
-# STILL IN PROGRESS
-
 The Anomaly Detector Autoencoder is a machine learning model used to detect anomalies in ECG data.
 
 ## Background on Autoencoders
 
-An autoencoder is essentailly a neural network trained to copy it's input to it's output. Internally, this model has a hidden layer which describes code used to represent an input. However, this copying is restricted to copy approximetly, forcing the model to learn a compressed representation of the input. This allows for the model to prioritise which aspects of the input data are most important.
+An autoencoder is essentially a neural network trained to copy its input to its output. Internally, this model has a hidden layer which describes code used to represent an input. However, this copying is restricted to copy approximately, forcing the model to learn a compressed representation of the input. This allows for the model to prioritise which aspects of the input data are most important.
 The architecture of an autoencoder includes an encoder aspect, and a decoder aspect.
 - The encoder aspect is responsible for compressing the input data into a latent-space representation.
 - The decoder aspect is responsible for reconstructing the input data from the latent-space representation.
 
 ## Dataset
-The dataset used in this project is the [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/). This dataset contains 48 half-hour excerpts of two-channel ambulatory ECG recordings, obtained from 47 subjects studied by the BIH Arrhythmia Laboratory between 1975 and 1979. The recordings were digitized at 360 samples per second per channel with 11-bit resolution over a 10 mV range. Two or more cardiologists independently annotated each record; disagreements were resolved to obtain the computer-readable reference annotations for each beat (approximately 110,000 annotations in all) included with the database.
+The dataset used in this project is the [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/) from PhysioNet.
+
 
 
 ## Requirements
@@ -32,8 +31,7 @@ Feel free to modify the content as per your requirements and add any additional 
 
 ## On the to-do list:
 - [ ] incorporate some MLOPS 
-- [ ] research and implement a better model architecture
 - [ ] add more documentation eg diagrams
-- [ ] better visualisations of results
+- [ ] test on other datasets
 - [ ] add tests
 
