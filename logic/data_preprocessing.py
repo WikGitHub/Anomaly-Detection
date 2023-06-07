@@ -13,20 +13,30 @@ def load_data(file_path: str) -> Tuple[tf.Tensor, tf.Tensor]:
     """
     dataframe = pd.read_csv(file_path)
     data = dataframe.iloc[:, :-1].values
-    labels = dataframe.iloc[:, -1].astype(bool).values
+    labels = dataframe.iloc[:, -1].values.astype(bool)
+
     return data, labels
 
 
-def normalise_data(data: tf.Tensor) -> tf.Tensor:
+def normalise_data(
+    test_data: tf.Tensor, train_data: tf.Tensor
+) -> Tuple[tf.Tensor, tf.Tensor]:
     """
     Normalise data to values between 0 and 1 using min-max normalisation
-    :param data: data to normalise
+    :param test_data: test data to normalise
+    :param train_data: train data to normalise
     :return: normalised data
     """
-    min_val = tf.reduce_min(data)
-    max_val = tf.reduce_max(data)
-    normalised_data = tf.cast((data - min_val) / (max_val - min_val), tf.float32)
-    return normalised_data
+    min_value = tf.reduce_min(train_data)
+    max_value = tf.reduce_max(train_data)
+
+    train_data = (train_data - min_value) / (max_value - min_value)
+    test_data = (test_data - min_value) / (max_value - min_value)
+
+    train_data = tf.cast(train_data, dtype=tf.float32)
+    test_data = tf.cast(test_data, dtype=tf.float32)
+
+    return train_data, test_data
 
 
 def separate_data_by_labels(
@@ -40,6 +50,7 @@ def separate_data_by_labels(
     """
     normal_data = data[labels]
     anomalous_data = data[~labels]
+
     return normal_data, anomalous_data
 
 
@@ -62,8 +73,9 @@ def preprocess_data(
     )
 
     # Normalise data
-    normalised_train_data = normalise_data(train_data)
-    normalised_test_data = normalise_data(test_data)
+    normalised_train_data, normalised_test_data = normalise_data(
+        train_data=train_data, test_data=test_data
+    )
 
     # Separate data by labels
     normal_train_data, anomalous_train_data = separate_data_by_labels(

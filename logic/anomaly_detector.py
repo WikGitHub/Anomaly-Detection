@@ -2,69 +2,68 @@ import tensorflow as tf
 
 from _logging.main import get_logger
 from logic.data_preprocessing import preprocess_data
+from logic.output_visualisation import plot_ecg, plot_losses
 from model.autoencoder import AnomalyDetector
 
 _logger = get_logger(__name__)
 
 
 def train_autoencoder(
-        autoencoder: AnomalyDetector,
-        train_data: tf.Tensor,
-        epochs: int = 20,
-        validation_data: tf.Tensor = None,
-) -> None:
+    autoencoder: AnomalyDetector,
+    train_data: tf.Tensor,
+    normal_test_data: tf.Tensor,
+    epochs: int = 50,
+) -> tf.keras.callbacks.History:
     """
     Train the autoencoder model on the train data
+    :param normal_test_data: the normal test data
     :param autoencoder: the autoencoder model
     :param train_data: the train data
     :param epochs: the number of epochs to train for
-    :param validation_data: the validation data
+    :return: the history of the training
     """
-    autoencoder.compile(optimizer="adam", loss="mae")
-    autoencoder.fit(
+    autoencoder.compile(optimizer="adam", loss="logcosh")
+    history = autoencoder.fit(
         train_data,
         train_data,
         epochs=epochs,
-        validation_data=validation_data,
-        shuffle=True,
+        batch_size=256,
+        validation_data=(normal_test_data, normal_test_data),
     )
 
-
-def evaluate_autoencoder(autoencoder: AnomalyDetector, test_data: tf.Tensor) -> None:
-    """
-    Evaluate the autoencoder model on the test data
-    :param autoencoder: the autoencoder model
-    :param test_data: the test data
-    """
-    loss = autoencoder.evaluate(test_data, test_data)
-    _logger.info("The loss is: {}".format(loss))
+    return history
 
 
 def main(
-        autoencoder: AnomalyDetector,
-        train_data: tf.Tensor,
-        test_data: tf.Tensor,
-        epochs: int = 20,
+    autoencoder: AnomalyDetector,
+    epochs: int = 20,
 ) -> None:
     """
     Train and evaluate the autoencoder model
     :param autoencoder: the autoencoder model
-    :param train_data: the train data
-    :param test_data: the test data
     :param epochs: the number of epochs to train for
     """
-    train_autoencoder(autoencoder, train_data, epochs)
-    evaluate_autoencoder(autoencoder, test_data)
-# Preprocess the data
-(
-    normal_train_data,
-    anomalous_train_data,
-    normal_test_data,
-    anomalous_test_data,
-) = preprocess_data("../data/ecg_data.csv")
+    # Preprocess the data
+    (
+        normal_train_data,
+        anomalous_train_data,
+        normal_test_data,
+        anomalous_test_data,
+    ) = preprocess_data("../data/ecg_data.csv")
 
-# Create an instance of the AnomalyDetector model
-autoencoder = AnomalyDetector()
+    # Train and evaluate the autoencoder
+    train_losses = train_autoencoder(
+        autoencoder, normal_train_data, normal_test_data, epochs=epochs
+    )
 
-# Train and evaluate the autoencoder
-main(autoencoder, normal_train_data, normal_test_data, epochs=50)
+    plot_ecg(normal_train_data, title="Normal ECG")
+    plot_ecg(anomalous_train_data, title="Anomalous ECG")
+    plot_losses(train_losses)
+
+
+if __name__ == "__main__":
+    # Create the autoencoder model
+    autoencoder = AnomalyDetector()
+
+    # Train and evaluate the model
+    main(autoencoder, epochs=20)

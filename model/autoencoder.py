@@ -1,7 +1,9 @@
 import tensorflow as tf
 from tensorflow.keras import layers
+from tensorflow.keras.models import Model
 
-class AnomalyDetector(tf.keras.Model):
+
+class AnomalyDetector(Model):
     """
     Anomaly detector model
     """
@@ -10,6 +12,7 @@ class AnomalyDetector(tf.keras.Model):
         super(AnomalyDetector, self).__init__()
         self.encoder = tf.keras.Sequential(
             [
+                layers.Dense(64, activation="relu"),
                 layers.Dense(32, activation="relu"),
                 layers.Dense(16, activation="relu"),
                 layers.Dense(8, activation="relu"),
@@ -20,16 +23,18 @@ class AnomalyDetector(tf.keras.Model):
             [
                 layers.Dense(16, activation="relu"),
                 layers.Dense(32, activation="relu"),
+                layers.Dense(64, activation="relu"),
                 layers.Dense(140, activation="sigmoid"),
             ]
         )
 
-    def call(self, input_data: tf.Tensor) -> tf.Tensor:
+    def call(self, x: tf.Tensor) -> tf.Tensor:
         """
         Calls the model, encoding and decoding the input data
-        :param input_data: the input data
+        :param x: the input data
         :return: the decoded data
         """
-        encoded = self.encoder(input_data)
+        encoded = self.encoder(x)
         decoded = self.decoder(encoded)
+
         return decoded
