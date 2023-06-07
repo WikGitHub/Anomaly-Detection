@@ -8,7 +8,7 @@ def plot_ecg(data_to_plot, title) -> None:
     :param data_to_plot: data to plot
     :param title: title of the plot
     """
-    plt.plot(np.arange(140), data_to_plot[0], c="red")
+    plt.plot(data_to_plot[0], c="red")
     plt.title(title)
     plt.show()
 
