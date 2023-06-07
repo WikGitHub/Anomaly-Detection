@@ -34,5 +34,6 @@ Feel free to modify the content as per your requirements and add any additional 
 - [ ] use environment variables to decrease hardcoding
 - [ ] add more documentation eg diagrams
 - [ ] test on other datasets
+- [ ] utilise logging
 - [ ] add tests
 
