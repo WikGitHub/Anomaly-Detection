@@ -8,10 +8,10 @@ _logger = get_logger(__name__)
 
 
 def train_autoencoder(
-    autoencoder: AnomalyDetector,
-    train_data: tf.Tensor,
-    epochs: int = 20,
-    validation_data: tf.Tensor = None,
+        autoencoder: AnomalyDetector,
+        train_data: tf.Tensor,
+        epochs: int = 20,
+        validation_data: tf.Tensor = None,
 ) -> None:
     """
     Train the autoencoder model on the train data
@@ -40,11 +40,11 @@ def evaluate_autoencoder(autoencoder: AnomalyDetector, test_data: tf.Tensor) -> 
     _logger.info("The loss is: {}".format(loss))
 
 
-def productionise_autoencoder(
-    autoencoder: AnomalyDetector,
-    train_data: tf.Tensor,
-    test_data: tf.Tensor,
-    epochs: int = 20,
+def main(
+        autoencoder: AnomalyDetector,
+        train_data: tf.Tensor,
+        test_data: tf.Tensor,
+        epochs: int = 20,
 ) -> None:
     """
     Productionise the autoencoder model
@@ -55,8 +55,6 @@ def productionise_autoencoder(
     """
     train_autoencoder(autoencoder, train_data, epochs)
     evaluate_autoencoder(autoencoder, test_data)
-
-
 # Preprocess the data
 (
     normal_train_data,
@@ -69,4 +67,4 @@ def productionise_autoencoder(
 autoencoder = AnomalyDetector()
 
 # Train and evaluate the autoencoder
-productionise_autoencoder(autoencoder, normal_train_data, normal_test_data, epochs=20)
+main(autoencoder, normal_train_data, normal_test_data, epochs=20)
