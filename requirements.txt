@@ -2,3 +2,4 @@ TensorFlow == 2.13.0rc0
 NumPy == 1.24.3
 Matplotlib == 3.7.1
 Scikit-learn == 1.2.2
+Pandas == 2.0.1
