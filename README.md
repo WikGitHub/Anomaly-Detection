@@ -9,7 +9,7 @@ The architecture of an autoencoder comprises of two components: an encoder and a
 - The decoder aspect is responsible for reconstructing the input data from the latent-space representation.
 
 ## Dataset
-The dataset used in this project is the [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/) from PhysioNet.
+The dataset used in this project is the [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/) from PhysioNet (Moody GB, Mark RG. The impact of the MIT-BIH Arrhythmia Database. IEEE Eng in Med and Biol 20(3):45-50 (May-June 2001). (PMID: 11446209)).
 
 
 ## Requirements
